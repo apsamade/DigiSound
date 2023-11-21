@@ -11,7 +11,7 @@ exports.handleWebhook = async (req, res, next) => {
     const sig = req.headers['stripe-signature'];
     
     console.log(user)
-    const panier = await Panier.findOne({userId: user._id, payer: false})
+    // const panier = await Panier.findOne({userId: user._id, payer: false})
     let event;
 
     try {
@@ -26,10 +26,10 @@ exports.handleWebhook = async (req, res, next) => {
         case 'payment_intent.succeeded':
             const paymentIntentSucceeded = event.data.object;
             console.log('paiement effectuer avec succès', paymentIntentSucceeded.status)
-            if(user && panier){
-                panier.payer = true;
-            }
-            await panier.save()
+            // if(user && panier){
+            //     panier.payer = true;
+            // }
+            // await panier.save()
             res.redirect('/confirm-payement')
             break;
         // ... handle other event types
