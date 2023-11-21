@@ -7,7 +7,7 @@ const productUser = new mongoose.Schema({
         unique: true,
     },
     mdp: {
-        type: Number,
+        type: String,
         required: true
     },
     admin: {
