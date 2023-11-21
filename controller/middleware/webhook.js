@@ -1,10 +1,14 @@
 const stripe = require('stripe')(process.env.SECRET_KEY_STRIPE);
-
 const endpointSecret = process.env.SECRET_WEBHOOK_KEY_STRIPE;
+
+const Panier = require('../../models/panier')
+const Product = require('../../models/product')
+
 
 exports.handleWebhook = async (req, res, next) => {
     const sig = req.headers['stripe-signature'];
-
+    const user = req.session.user;
+    const panier = await Panier.findOne({userId: user._id, payer: false})
     let event;
 
     try {
@@ -19,7 +23,11 @@ exports.handleWebhook = async (req, res, next) => {
         case 'payment_intent.succeeded':
             const paymentIntentSucceeded = event.data.object;
             console.log('paiement effectuer avec succès', paymentIntentSucceeded.status)
-            // Then define and call a function to handle the event payment_intent.succeeded
+            if(user && panier){
+                panier.payer = true;
+            }
+            await panier.save()
+            res.redirect('/confirm-payement')
             break;
         // ... handle other event types
         default:
