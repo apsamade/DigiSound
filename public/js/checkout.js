@@ -42,7 +42,7 @@ async function handleSubmit(e) {
     const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-            return_url: `http://127.0.0.1/shop/produit/${id}/confirm-payement-product`,
+            return_url: `https://digisound.onrender.com/shop/produit/${id}`,
         },
     });
 
