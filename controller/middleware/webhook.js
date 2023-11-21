@@ -16,11 +16,16 @@ exports.handleWebhook = async (req, res, next) => {
 
     try {
         event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+        console.log('Event:', event);
+    
+        // Ajoutez un log ici pour afficher l'utilisateur après la construction de l'événement
+        console.log('User (after event construction):', req.session.user);
     } catch (err) {
+        console.error('Erreur lors de la construction de l\'événement:', err);
         res.status(400).send(`Webhook Error: ${err.message}`);
         return;
     }
-
+    console.log('User (after try-catch):', req.session.user);
     // Handle the event
     switch (event.type) {
         case 'payment_intent.succeeded':
