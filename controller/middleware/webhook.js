@@ -5,9 +5,9 @@ const Panier = require('../../models/panier')
 const Product = require('../../models/product')
 const User = require('../../models/user')
 
-const user = req.session.user;
+
 exports.handleWebhook = async (req, res, next) => {
-    
+    const user = req.session.user;
     const sig = req.headers['stripe-signature'];
     
     console.log(user)

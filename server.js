@@ -51,6 +51,11 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(userRoutes)
 app.use(adminRoutes)
 
+app.use((req, res, next) => {
+    console.log('Middleware de session (avant webhook):', req.session);
+    next();
+});
+
 app.use(webhookRoutes)
 // Autres configurations middleware, gestion des erreurs, etc.
 
