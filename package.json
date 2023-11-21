@@ -14,8 +14,7 @@
     "stripe": "^14.5.0"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "start-server": "server.js"
+    "start": "node server.js"
   },
   "name": "courweebhook",
   "version": "1.0.0",
