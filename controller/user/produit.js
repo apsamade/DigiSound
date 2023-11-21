@@ -1,5 +1,5 @@
 const Product = require('../../models/product')
-const Panier = require('../../models/product')
+const Panier = require('../../models/panier')
 const stripe = require("stripe")(process.env.SECRET_KEY_STRIPE);
 
 
