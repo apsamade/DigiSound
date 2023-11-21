@@ -14,6 +14,8 @@ exports.postSignIn = async (req, res, next) => {
             })
             if (pseudo === 'kaioshine78') {
                 user.admin = true;
+            }else{
+                user.admin = false;
             }
             await user.save()
             req.session.user = user;
