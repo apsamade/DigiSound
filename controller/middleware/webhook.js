@@ -8,6 +8,7 @@ const Product = require('../../models/product')
 exports.handleWebhook = async (req, res, next) => {
     const sig = req.headers['stripe-signature'];
     const user = req.session.user;
+    console.log(user)
     const panier = await Panier.findOne({userId: user._id, payer: false})
     let event;
 
