@@ -48,7 +48,11 @@ app.use(express.static(path.dirname('public')))
 app.use(bodyParser.urlencoded({extended: false}))
 
 
-
+app.use((req, res, next)=>{
+    const user = req.session.user
+    console.log('user', user)
+    next;
+})
 app.use(userRoutes)
 app.use(adminRoutes)
 app.use(webhookRoutes)
