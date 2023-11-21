@@ -29,7 +29,7 @@ exports.postProduit = async (req, res, next)=>{
         }else if(user && panierExisting){
             panierExisting.price += produit._id;
         }else{
-            res.redirect('/sign-in')
+            return res.redirect('/sign-in')
         }
 
         const paymentIntent = await stripe.paymentIntents.create({
