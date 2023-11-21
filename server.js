@@ -57,7 +57,10 @@ app.use(webhookRoutes)
 app.use(errController.get404);
 
 
-mongoose.connect(URI).then(() => {
+mongoose.connect(URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
     app.listen(PORT, () => { console.log(`écoute sur le port : ${PORT}`) })
     console.log('connexion à la bdd établie !')
 }).catch((err) => {
