@@ -3,13 +3,14 @@ const endpointSecret = process.env.SECRET_WEBHOOK_KEY_STRIPE;
 
 const Panier = require('../../models/panier')
 const Product = require('../../models/product')
+const User = require('../../models/user')
 
 
 exports.handleWebhook = async (req, res, next) => {
     const sig = req.headers['stripe-signature'];
     const user = req.session.user;
     console.log(user)
-    const panier = await Panier.findOne({userId: user._id, payer: false})
+    const panier = await Panier.find({userId: user._id, payer: false})
     let event;
 
     try {
