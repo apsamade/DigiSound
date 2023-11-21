@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Lexend:wght@400;500;900&family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    /* 
+        font-family: 'Anton', sans-serif;
+        font-family: 'Lexend', sans-serif;
+        font-family: 'Oswald', sans-serif;
+        font-family: 'Roboto', sans-serif; 
+    */
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F5F5F5;
+    overflow-x: hidden;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    margin: 10px auto 0;
+}
+nav .logo img{
+    width: 125px;
+}
+nav div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+nav .nav-2 img{
+    width: 24px;
+}
+nav .nav-2 ul{
+    margin-left: 25px;
+}
+nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+nav ul li{
+    list-style: none;
+}
+nav ul li a, nav a{
+    text-decoration: none;
+    letter-spacing: -1px;
+    font-size: 18px;
+    color: black;
+    padding: 8px;
+    border-radius: 4px;
+    transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
+}
+nav ul li a:not(nav .nav-2 ul li a, nav .logo ):hover, nav a:not(nav .nav-2 ul li a, nav .logo ):hover{
+    background-color: #ebe1e1;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+}
+nav ul li a img{
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+nav ul li a img:hover{
+    background-color: #e6cece;
+    box-shadow: 0 0 2px 8px #e6cece;
+}
+.err h1{
+    text-align: center;
+    margin: 15px auto;
+    font-family: 'Lexend', sans-serif;
+}
+@media screen and (max-width: 900px) {
+    nav{
+        display: none;
+    }
+    
+}

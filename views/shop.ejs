@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/shop.css">
+    <link rel="shortcut icon" href="/public/img/logo/logoSimple.png" type="image/x-icon">
+</head>
+<body>
+    <% if(user){ %>
+        <%- include('partials/navAdmin.ejs') %>
+    <% }else{ %>
+        <%- include('partials/nav.ejs') %>
+    <% } %>
+
+    <h1>Shop</h1>
+    <section class="produits">
+        <% produits.forEach(produit => { %>
+            <div class="product">
+                <img src="/public/img/photoPNG/<%= produit.image %>" alt="produit DigiSound">
+                <h4><%= produit.name %></h4>
+                <a style="text-decoration: none;" href="/shop/produit/<%= produit._id %>"><h4 class="buy">prix : <span style="color: green;"><%= produit.price/100 %></span> €</h4></a>
+            </div>
+        <% }); %>        
+    </section>
+
+</body>
+</html>

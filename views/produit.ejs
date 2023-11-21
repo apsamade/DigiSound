@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/produit.css">
+    <link rel="shortcut icon" href="/public/img/logo/logoSimple.png" type="image/x-icon">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="/public/js/checkout.js" defer></script>
+</head>
+<body>
+    <% if(user){ %>
+        <%- include('partials/navAdmin.ejs') %>
+    <% }else{ %>
+        <%- include('partials/nav.ejs') %>
+    <% } %>
+
+    <h1>Produit <%= produit.name %></h1>
+    <section class="produit">
+        <div class="product">
+            <img src="/public/img/photoPNG/<%= produit.image %>" alt="produit DigiSound">
+            <h4><%= produit.name %></h4>
+            <a style="text-decoration: none;" href="/shop/produit/<%= produit._id %>"><h4 class="buy">prix : <span style="color: green;"><%= produit.price/100 %></span> €</h4></a>
+        </div>      
+    </section>
+    <form id="payment-form">
+        <div id="payment-element">
+            <!--Stripe.js injects the Payment Element-->
+        </div>
+        <button id="submit">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="button-text">Pay now</span>
+        </button>
+        <div id="payment-message" class="hidden"></div>
+    </form>
+</body>
+</html>
