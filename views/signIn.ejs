@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="shortcut icon" href="/public/img/logo/logoSimple.png" type="image/x-icon">
+</head>
+<body>
+    <%- include('partials/nav.ejs') %>
+    <h1>Sign In</h1>
+    <form method="POST">
+        <div class="info">
+            <label for="pseudo">Pseudo <span style="color: red;">*</span></label>
+            <input type="text" name="pseudo" id="pseudo">
+        </div>
+        <div class="info mdp">
+            <label for="mdp">Mot de Passe <span style="color: red;">*</span></label>
+            <input type="password" name="mdp" id="mdp">
+        </div>
+        <div class="info">
+            <input type="submit" value="Valider">            
+        </div>
+        <a href="/login">Se Connecter</a>
+    </form>
+</body>
+</html>
