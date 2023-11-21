@@ -15,7 +15,6 @@ exports.handleWebhook = async (req, res, next) => {
         const user = req.session.user
         console.log(user)
         event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-        console.log('the event : ', event)
     } catch (err) {
         res.status(400).send(`Webhook Error: ${err.message}`);
         return;
