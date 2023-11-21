@@ -35,7 +35,6 @@ exports.handleWebhook = async (req, res, next) => {
             //     panier.payer = true;
             // }
             // await panier.save()
-            res.redirect('/')
             break;
         // ... handle other event types
         default:
