@@ -33,15 +33,15 @@ const csp = {
 
 app.use(cors());
 app.use(helmet.contentSecurityPolicy(csp));
-
-app.use(express.raw({ type: 'application/json' }));
-app.use(cookieParser())
 app.use(session({
         secret: "jujutsukaisenonepiece123456",
         resave: false,
         saveUninitialized: false,
         cookie: { secure: false }
 }))
+app.use(express.raw({ type: 'application/json' }));
+app.use(cookieParser())
+
 
 app.use(express.static(path.dirname('public')))
 app.use(bodyParser.urlencoded({extended: false}))
