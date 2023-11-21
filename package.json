@@ -14,7 +14,8 @@
     "stripe": "^14.5.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js",
+    "start-server": "server.js"
   },
   "name": "digisound",
   "version": "1.0.0",
