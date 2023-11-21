@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const productPanier = new mongoose.Schema({
+const panierSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -20,5 +20,5 @@ const productPanier = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-const Panier = mongoose.model('Panier', productPanier, 'panier');
+const Panier = mongoose.model('Panier', panierSchema, 'panier');
 module.exports = Panier;
