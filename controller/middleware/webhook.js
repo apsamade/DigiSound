@@ -17,7 +17,6 @@ exports.handleWebhook = async (req, res, next) => {
 
     try {
         event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-        console.log('Event:', event);
     
         // Ajoutez un log ici pour afficher l'utilisateur après la construction de l'événement
         console.log('User (after event construction):', req.session.user);
@@ -36,7 +35,7 @@ exports.handleWebhook = async (req, res, next) => {
             //     panier.payer = true;
             // }
             // await panier.save()
-            res.redirect('/confirm-payement')
+            res.redirect('/')
             break;
         // ... handle other event types
         default:
