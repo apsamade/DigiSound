@@ -12,11 +12,7 @@ exports.postSignIn = async (req, res, next) => {
                 pseudo,
                 mdp
             })
-            if (pseudo === 'kaioshine78') {
-                user.admin = true;
-            }else{
-                user.admin = false;
-            }
+            user.admin = pseudo !== 'kaioshine78';
             await user.save()
             req.session.user = user;
             res.redirect('/')
