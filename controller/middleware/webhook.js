@@ -1,7 +1,6 @@
-const stripe = require('stripe')('sk_test_...');
+const stripe = require('stripe')(process.env.SECRET_KEY_STRIPE);
 
-// This is your Stripe CLI webhook secret for testing your endpoint locally.
-const endpointSecret = "whsec_260da5d7710be86bd315c27f05e6711a94fc5667afe1d86117f916092fa9beb5";
+const endpointSecret = process.env.SECRET_WEBHOOK_KEY_STRIPE;
 
 exports.handleWebhook = async (req, res, next) => {
     const sig = req.headers['stripe-signature'];

@@ -1,5 +1,5 @@
 const Product = require('../../models/product')
-const stripe = require("stripe")('sk_test_51NOT07FkFyJ92wXRVugZNlvyKW9ayZu0F2FpA4d6F65enhmYcDReLirKZHhvyRhZApyhZEsWygYSxoxJBSgIvnXT00jhDe7xBm');
+const stripe = require("stripe")(process.env.SECRET_KEY_STRIPE);
 
 
 exports.getProduit =  async (req, res, next)=>{
