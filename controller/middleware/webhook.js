@@ -10,7 +10,7 @@ exports.handleWebhook = async (req, res, next) => {
     const sig = req.headers['stripe-signature'];
     const user = req.session.user;
     console.log(user)
-    const panier = await Panier.find({userId: user._id, payer: false})
+    const panier = await Panier.findOne({userId: user._id})
     let event;
 
     try {
