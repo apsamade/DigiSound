@@ -50,6 +50,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 app.use(userRoutes)
 app.use(adminRoutes)
+
 app.use(webhookRoutes)
 // Autres configurations middleware, gestion des erreurs, etc.
 
