@@ -8,6 +8,7 @@ const User = require('../../models/user')
 
 exports.handleWebhook = async (req, res, next) => {
     const user = req.session.user;
+    console.log(req.session)
     const sig = req.headers['stripe-signature'];
     
     console.log(user)
