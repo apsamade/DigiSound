@@ -8,9 +8,6 @@ const User = require('../../models/user')
 
 exports.handleWebhook = async (req, res, next) => {
     const sig = req.headers['stripe-signature'];
-    const panierID = req.params.id
-    const panier = await Panier.findById(panierID)
-    console.log(panier)
     let event;
 
     try {
@@ -29,7 +26,6 @@ exports.handleWebhook = async (req, res, next) => {
         default:
             console.log(`Unhandled event type ${event.type}`);
     }
-
     // Return a 200 response to acknowledge receipt of the event
     res.status(200).send();
 
