@@ -6,6 +6,7 @@ exports.getConfirmPayement =  async (req, res, next)=>{
     const user = req.session.user
     const panierId = req.params.id
     const panier = await Product.findById(panierId)
+    console.log(panier)
     try {
         if(panier.payer){
             res.render('confirmPayement', {user, panier})
