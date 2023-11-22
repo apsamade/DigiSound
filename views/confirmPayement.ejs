@@ -27,9 +27,11 @@
             <h2>élement de l'objet</h2>
 
             <ul>
-                <% panier.map(value => { %>
-                    <li><%= value %></li>
-                <% }); %>
+                <li><strong>UserID:</strong> <%= panier.userId %> </li>
+                <li><strong>ProduitID:</strong> <%= panier.produitId.join(', ') %> </li>
+                <li><strong>Prix:</strong> <%= panier.price %> € </li>
+                <li><strong>PayementIntentID:</strong> <%= panier.payementIntentId %> </li>
+                <li><strong>Payer:</strong> <%= panier.payer %> </li>
             </ul>
         </div>
     </section>
