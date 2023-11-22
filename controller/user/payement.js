@@ -26,6 +26,9 @@ exports.postPayement = async (req, res, next)=>{
         });
         console.log('payement intent', paymentIntent.id)
         panier.payementIntentId = paymentIntent.id;
+        if(panier.payer == true){
+            panier.payementIntentId = undefined;
+        }
         await panier.save()
         res.send({
             clientSecret: paymentIntent.client_secret,

@@ -10,6 +10,7 @@ const accountController = require('../controller/user/account')
 const shopController = require('../controller/user/shop')
 const produitController = require('../controller/user/produit')
 const payementController = require('../controller/user/payement')
+const confirmPayementController = require('../controller/user/confirmPayement')
 
 
 
@@ -30,6 +31,9 @@ router.post('/shop', shopController.postShop)
 
 router.get('/panier/:id', payementController.getPayement)
 router.post('/panier/:id', payementController.postPayement)
+
+router.get('/panier/:id/confirmation-du-payement', confirmPayementController.getConfirmPayement)
+router.post('/panier/:id/confirmation-du-payement', confirmPayementController.postConfirmPayement)
 
 router.get('/shop/produit/:id', produitController.getProduit)
 router.post('/shop/produit/:id', produitController.postProduit)
