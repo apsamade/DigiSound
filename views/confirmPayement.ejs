@@ -20,7 +20,17 @@
 
     <h1>Thanks for your order!</h1>
     <section id="success" class="hidden">
-        <p><%= panier %></p>
+        <% if(typeof panierNonPayer != 'undefined'){ %>
+            <div><%= panierNonPayer %></div>
+        <% } %>
+        <div>
+            <h2>élement de l'objet</h2>
+            <ul>
+                <% for (const key in panier) { %>
+                    <li><%= key %>: <%= panier[key] %></li>
+                <% } %>
+            </ul>
+        </div>
     </section>
 
 </body>
