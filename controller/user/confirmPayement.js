@@ -1,4 +1,3 @@
-const Product = require('../../models/product')
 const Panier = require('../../models/panier')
 
 

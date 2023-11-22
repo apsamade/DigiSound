@@ -27,7 +27,7 @@
             <h2>élement de l'objet</h2>
 
             <ul>
-                <% panier.values(panier).forEach(value => { %>
+                <% panier.map(value => { %>
                     <li><%= value %></li>
                 <% }); %>
             </ul>
