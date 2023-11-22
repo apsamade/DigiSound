@@ -20,7 +20,7 @@ exports.postProduit = async (req, res, next)=>{
     const produit = await Product.findById(productId)
     try {
         if(user){
-            const panierExisting = await Panier.findOne({userId: user._id})
+            const panierExisting = await Panier.findOne({userId: user._id, produitId: produit._id, payer: false})
             if(!panierExisting){
                 const panier = new Panier ({
                     userId: user._id,
