@@ -16,7 +16,6 @@ exports.getPayement =  async (req, res, next)=>{
 exports.postPayement = async (req, res, next)=>{
     const panierId = req.params.id
     const panier = await Panier.findById(panierId)
-    console.log(panier)
     try {
         const paymentIntent = await stripe.paymentIntents.create({
             amount: panier.price,
