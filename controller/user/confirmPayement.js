@@ -5,7 +5,10 @@ const Panier = require('../../models/panier')
 exports.getConfirmPayement =  async (req, res, next)=>{
     const user = req.session.user
     const panierId = req.params.id
-    const panier = await Product.findById(panierId)
+    const panier = await Panier.findById(panierId)
+
+    console.log('panier id', panierId)
+    console.log(user._id)
     console.log('panier recupérer', panier)
     try {
         if(panier && panier.payer == true){
