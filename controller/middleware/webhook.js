@@ -11,9 +11,11 @@ exports.handleWebhook = async (req, res, next) => {
     let event;
 
     try {
-        const paniers = await Panier.find()
+        
         console.log(paniers)
         event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+        console.log('the event', event.id)
+        const paniers = await Panier.find()
     } catch (err) {
         res.status(400).send(`Webhook Error: ${err.message}`);
         return;
