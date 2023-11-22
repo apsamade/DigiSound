@@ -17,7 +17,6 @@ exports.getProduit =  async (req, res, next)=>{
 exports.postProduit = async (req, res, next)=>{
     const productId = req.params.id
     const user = req.session.user
-    console.log(user)
     const produit = await Product.findById(productId)
     try {
         const panierExisting = await Panier.findOne({userId: user._id})
