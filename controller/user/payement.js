@@ -24,7 +24,7 @@ exports.postPayement = async (req, res, next)=>{
                 enabled: true,
             },
         });
-        console.log('payement intent', paymentIntent)
+        console.log('payement intent', paymentIntent._id)
         res.send({
             clientSecret: paymentIntent.client_secret,
         });        
