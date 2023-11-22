@@ -25,6 +25,8 @@ exports.postPayement = async (req, res, next)=>{
             },
         });
         console.log('payement intent', paymentIntent._id)
+        panier.payementIntentId = paymentIntent._id;
+        await panier.save()
         res.send({
             clientSecret: paymentIntent.client_secret,
         });        
