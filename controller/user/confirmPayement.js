@@ -6,9 +6,9 @@ exports.getConfirmPayement =  async (req, res, next)=>{
     const user = req.session.user
     const panierId = req.params.id
     const panier = await Product.findById(panierId)
-    console.log(panier)
+    console.log('panier recupérer', panier)
     try {
-        if(panier.payer){
+        if(panier && panier.payer == true){
             res.render('confirmPayement', {user, panier})
         }else{
             res.render('confirmPayement', {user, panier, panierNonPayer: 'panier non payer une erreur est survenue !'})
