@@ -25,8 +25,15 @@
             <a style="text-decoration: none;" href="/shop/produit/<%= produit._id %>"><h4 class="buy">prix : <span style="color: green;"><%= produit.price/100 %></span> €</h4></a>
         </div>      
     </section>
-    <div id="checkout">
-        <!-- Checkout will insert the payment form here -->
-    </div>
+    <form id="payment-form">
+        <div id="payment-element">
+            <!--Stripe.js injects the Payment Element-->
+        </div>
+        <button id="submit">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="button-text">Pay now</span>
+        </button>
+        <div id="payment-message" class="hidden"></div>
+    </form>
 </body>
 </html>
