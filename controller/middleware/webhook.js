@@ -24,7 +24,7 @@ exports.handleWebhook = async (req, res, next) => {
             const panier = await Panier.findOne({payementIntentId: paymentIntentSucceeded.id})
             panier.payer = true;
             await panier.save()
-            res.redirect(`/panier/${panier._id}/confirmation-du-payement`)
+            res.redirect(`https://digisound.onrender.com/panier/${panier._id}/confirmation-du-payement`)
             break;
         // ... handle other event types
         default:
