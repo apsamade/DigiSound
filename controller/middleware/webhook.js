@@ -12,7 +12,6 @@ exports.handleWebhook = async (req, res, next) => {
 
     try {
         event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-        console.log('the event', event.id)
     } catch (err) {
         res.status(400).send(`Webhook Error: ${err.message}`);
         return;
@@ -20,6 +19,7 @@ exports.handleWebhook = async (req, res, next) => {
     // Handle the event
     switch (event.type) {
         case 'payment_intent.succeeded':
+            console.log('the event', event.id)
             const paymentIntentSucceeded = event.data.object;
             console.log('paiement effectuer avec succès', paymentIntentSucceeded.status)
             break;
