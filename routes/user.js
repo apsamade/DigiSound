@@ -25,6 +25,5 @@ router.post('/shop', shopController.postShop)
 
 router.get('/shop/produit/:id', produitController.getProduit)
 router.post('/shop/produit/:id', produitController.postProduit)
-router.get('/shop/produit/:id/session-status', produitController.getStatusSession)
 
 module.exports = router;
