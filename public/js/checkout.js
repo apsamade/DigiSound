@@ -15,7 +15,7 @@ document
 
 // Fetches a payment intent and captures the client secret
 async function initialize() {
-    const response = await fetch(`/shop/produit/${id}/`, {
+    const response = await fetch(`/panier/${id}/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
     });
@@ -42,7 +42,7 @@ async function handleSubmit(e) {
     const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-            return_url: `https://digisound.onrender.com/shop/produit/${id}`,
+            return_url: `https://digisound.onrender.com/panier/${id}/`,
         },
     });
 

@@ -8,8 +8,10 @@
     <link rel="shortcut icon" href="/public/img/logo/logoSimple.png" type="image/x-icon">
 </head>
 <body class="err">
-    <% if(user){ %>
+    <% if(user && user.admin){ %>
         <%- include('partials/navAdmin.ejs') %>
+    <% }else if(user && user.admin == false){ %>
+        <%- include('partials/navUser.ejs') %>
     <% }else{ %>
         <%- include('partials/nav.ejs') %>
     <% } %>

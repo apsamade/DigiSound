@@ -189,3 +189,19 @@ button:disabled {
     }
 }
 /* formualire de payement fin */
+
+input[type=submit]{
+    border: none;
+    width: 100%;
+    padding: 8px;
+    font-family: 'lexend', sans-serif;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s, color 0.3s, background-color 0.3s;
+}
+input[type=submit]:hover{
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+    color: white;
+    background-color: green;
+}

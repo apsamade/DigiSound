@@ -3,10 +3,10 @@ const Product = require('../../models/product')
 exports.getAddProduct =  async (req, res, next)=>{
     const user = req.session.user
     try {
-        if(user && user.pseudo == 'kaioshine78'){
+        if(user && user.admin){
             res.render('addProduct', {user})
         }else{
-            res.redirect('/404')
+            res.redirect('/401')
         }
         
     } catch (error) {

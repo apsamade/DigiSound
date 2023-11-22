@@ -19,31 +19,20 @@ exports.postProduit = async (req, res, next)=>{
     const user = req.session.user
     const produit = await Product.findById(productId)
     try {
-        const panierExisting = await Panier.findOne({userId: user._id})
-        if(user && !panierExisting){
-            const panier = new Panier ({
-                userId: user._id,
-                produitId: produit._id,
-                price: produit.price
-            })
-            await panier.save()
-        }else if(user && panierExisting){
-            panierExisting.price += produit._id;
-        }else{
-            return res.redirect('/sign-in')
+        if(user){
+            const panierExisting = await Panier.findOne({userId: user._id})
+            if(!panierExisting){
+                const panier = new Panier ({
+                    userId: user._id,
+                    produitId: produit._id,
+                    price: produit.price
+                })
+                await panier.save()
+                res.redirect(`/panier/${panier._id}`)
+            }else{
+                res.redirect(`/panier/${panierExisting._id}`)
+            }         
         }
-
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: produit.price,
-            currency: "eur",
-            automatic_payment_methods: {
-                enabled: true,
-            },
-        });
-
-        res.send({
-            clientSecret: paymentIntent.client_secret,
-        });        
     } catch (error) {
         console.log(error)
     }
