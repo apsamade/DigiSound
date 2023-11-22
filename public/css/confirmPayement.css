@@ -3,3 +3,10 @@ h1{
     margin: 15px auto;
     font-family: 'Lexend', sans-serif;
 }
+
+h2{
+    text-align: center;
+    text-transform: capitalize;
+    margin: 15px auto;
+    font-family: 'Lexend', sans-serif;
+}
