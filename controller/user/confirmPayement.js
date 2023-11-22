@@ -14,7 +14,7 @@ exports.getConfirmPayement =  async (req, res, next)=>{
         if(panier && panier.payer == true){
             res.render('confirmPayement', {user, panier})
         }else{
-            res.render('confirmPayement', {user, panier, panierNonPayer: 'panier non payer une erreur est survenue !'})
+            res.render('confirmPayement', {user, panier, err: 'panier non payer une erreur est survenue !'})
         }
         
     } catch (error) {

@@ -20,15 +20,16 @@
 
     <h1>Thanks for your order!</h1>
     <section id="success" class="hidden">
-        <% if(typeof panierNonPayer != 'undefined'){ %>
-            <div><%= panierNonPayer %></div>
-        <% } %>
+        <% if (typeof err !== 'undefined') { %>
+            <div id="error-message" style="text-align: center;"><%= err %></div>  
+        <% } %>   
         <div>
             <h2>élement de l'objet</h2>
+
             <ul>
-                <% for (const key in panier) { %>
-                    <li><%= key %>: <%= panier[key] %></li>
-                <% } %>
+                <% panier.values(panier).forEach(value => { %>
+                    <li><%= value %></li>
+                <% }); %>
             </ul>
         </div>
     </section>
