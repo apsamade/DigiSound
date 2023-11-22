@@ -8,12 +8,12 @@ const User = require('../../models/user')
 
 exports.handleWebhook = async (req, res, next) => {
     const sig = req.headers['stripe-signature'];
-    
+    const panierID = req.params.id
+    const panier = await Panier.findById(panierID)
+    console.log(panier)
     let event;
 
     try {
-        const user = req.session.user
-        console.log(user)
         event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
     } catch (err) {
         res.status(400).send(`Webhook Error: ${err.message}`);
