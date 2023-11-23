@@ -33,7 +33,7 @@ const csp = {
 };
 
 app.use(cors());
-// app.use(helmet.contentSecurityPolicy(csp));
+app.use(helmet.contentSecurityPolicy(csp));
 
 app.use(express.raw({ type: 'application/json' }));
 app.use(cookieParser())
