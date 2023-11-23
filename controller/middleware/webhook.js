@@ -11,15 +11,15 @@ const fulfillOrder = (lineItems) => {
 }
 
 exports.handleWebhook = async (req, res, next) => {
-    const payload = request.body;
-    const sig = request.headers['stripe-signature'];
+    const payload = req.body;
+    const sig = req.headers['stripe-signature'];
 
     let event;
 
     try {
         event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
     } catch (err) {
-        return response.status(400).send(`Webhook Error: ${err.message}`);
+        return res.status(400).send(`Webhook Error: ${err.message}`);
     }
 
     // Handle the checkout.session.completed event
@@ -37,7 +37,6 @@ exports.handleWebhook = async (req, res, next) => {
         fulfillOrder(lineItems);
     }
 
-    response.status(200).end();
     // Return a 200 response to acknowledge receipt of the event
     res.status(200).send();
 
