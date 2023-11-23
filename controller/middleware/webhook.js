@@ -7,7 +7,7 @@ const User = require('../../models/user')
 
 const fulfillOrder = async (lineItems, panierId) => {
     try {
-        
+        console.log('meta donné : ', lineItems.metadata)
     } catch (error) {
         console.log(error)
     }

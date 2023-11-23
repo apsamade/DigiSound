@@ -15,6 +15,7 @@ exports.getPayement = async (req, res, next) => {
 }
 exports.postPayement = async (req, res, next) => {
     const panierId = req.params.id
+    const user = req.session.user
     const panier = await Panier.findById(panierId)
     const amount = panier.price
     const product = await stripe.products.create({
@@ -37,6 +38,13 @@ exports.postPayement = async (req, res, next) => {
             ],
             mode: 'payment',
             return_url: `${YOUR_DOMAIN}/panier/${panierId}/confirmation-du-payement?session_id={CHECKOUT_SESSION_ID}`,
+            metadata: {
+                userId: user._id,
+                userName: user.pseudo,
+                panierId: panier._id,
+                panierPrice: panier.price,
+                productId: panier.produitId
+            },
         });
 
         res.send({ clientSecret: session.client_secret });
