@@ -1,37 +1,46 @@
 const Product = require('../../models/product')
 const Panier = require('../../models/panier')
 const stripe = require("stripe")(process.env.SECRET_KEY_STRIPE);
+const YOUR_DOMAIN = process.env.YOUR_DOMAIN
 
-
-exports.getPayement =  async (req, res, next)=>{
+exports.getPayement = async (req, res, next) => {
     const user = req.session.user
     const panierId = req.params.id
-    const panier = await Product.findById(panierId)
+    const panier = await Panier.findById(panierId)
     try {
-        res.render('payement', {user, panier})
+        res.render('payement', { user, panier })
     } catch (error) {
         console.log(error)
     }
 }
-exports.postPayement = async (req, res, next)=>{
+exports.postPayement = async (req, res, next) => {
     const panierId = req.params.id
     const panier = await Panier.findById(panierId)
+    const amount = panier.price
+    const product = await stripe.products.create({
+        name: 'Panier',
+    });
+    const price = await stripe.prices.create({
+        product: product.id,
+        unit_amount: amount,
+        currency: 'eur',
+    })
+    console.log('fiche produit', product)
+    console.log('fiche prix', price)
     try {
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: panier.price,
-            currency: "eur",
-            automatic_payment_methods: {
-                enabled: true,
-            },
+        const session = await stripe.checkout.sessions.create({
+            line_items: [
+                {
+                    price: price.id,
+                    quantity: 1,
+                },
+            ],
+            mode: 'payment',
+            success_url: `${YOUR_DOMAIN}/panier/${panierId}/confirmation-du-payement?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${YOUR_DOMAIN}/panier/${panierId}/annulation-du-payement`,
         });
-        console.log('payement intent', paymentIntent.id)
-        if(panier.payer == false){
-            panier.payementIntentId = paymentIntent.id;
-        }
-        await panier.save()
-        res.send({
-            clientSecret: paymentIntent.client_secret,
-        });        
+
+        res.redirect(303, session.url);
     } catch (error) {
         console.log(error)
     }

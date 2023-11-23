@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigiSound | Panier</title>
+    <title>Document</title>
     <link rel="stylesheet" href="/public/css/style.css">
-    <link rel="stylesheet" href="/public/css/payement.css">
+    <link rel="stylesheet" href="/public/css/confirmPayement.css">
+    <script src="/public/js/return.js" defer></script>
     <link rel="shortcut icon" href="/public/img/logo/logoSimple.png" type="image/x-icon">
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="/public/js/checkout.js" defer></script>
 </head>
 <body>
     <% if(user && user.admin){ %>
@@ -18,13 +17,8 @@
     <% }else{ %>
         <%- include('partials/nav.ejs') %>
     <% } %>
-        <h1>Payement</h1>
-        <div class="description">
-            <h3>Stubborn Attachments</h3>
-            <h5>$20.00</h5>
-        </div>
-        <form method="POST">
-            <button type="submit" id="checkout-button">Checkout</button>
-        </form>
+
+    <h1>Cancel !</h1>
+
 </body>
 </html>
