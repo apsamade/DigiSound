@@ -9,7 +9,15 @@ const fulfillOrder = (lineItems) => {
     // TODO: fill me in
     console.log("Fulfilling order", lineItems);
 }
+const createOrder = (session) => {
+    // TODO: fill me in
+    console.log("Creating order", session);
+}
 
+const emailCustomerAboutFailedPayment = (session) => {
+    // TODO: fill me in
+    console.log("Emailing customer", session);
+}
 exports.handleWebhook = async (req, res, next) => {
     const payload = req.body;
     const sig = req.headers['stripe-signature'];
@@ -22,20 +30,43 @@ exports.handleWebhook = async (req, res, next) => {
         return res.status(400).send(`Webhook Error: ${err.message}`);
     }
 
-    // Handle the checkout.session.completed event
-    if (event.type === 'checkout.session.async_payment_succeeded') {
-        // Retrieve the session. If you require line items in the response, you may include them by expanding line_items.
-        const sessionWithLineItems = await stripe.checkout.sessions.retrieve(
-            event.data.object.id,
-            {
-                expand: ['line_items'],
-            }
-        );
-        const lineItems = sessionWithLineItems.line_items;
+    switch (event.type) {
+        case 'checkout.session.completed': {
+            const session = event.data.object;
+            // Save an order in your database, marked as 'awaiting payment'
+            createOrder(session);
 
-        // Fulfill the purchase...
-        fulfillOrder(lineItems);
+            // Check if the order is paid (for example, from a card payment)
+            //
+            // A delayed notification payment will have an `unpaid` status, as
+            // you're still waiting for funds to be transferred from the customer's
+            // account.
+            if (session.payment_status === 'paid') {
+                fulfillOrder(session);
+            }
+
+            break;
+        }
+
+        case 'checkout.session.async_payment_succeeded': {
+            const session = event.data.object;
+
+            // Fulfill the purchase...
+            fulfillOrder(session);
+
+            break;
+        }
+
+        case 'checkout.session.async_payment_failed': {
+            const session = event.data.object;
+
+            // Send an email to the customer asking them to retry their order
+            emailCustomerAboutFailedPayment(session);
+
+            break;
+        }
     }
+
 
     // Return a 200 response to acknowledge receipt of the event
     res.status(200).send();
