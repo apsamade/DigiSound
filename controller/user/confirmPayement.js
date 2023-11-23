@@ -6,6 +6,9 @@ exports.getConfirmPayement =  async (req, res, next)=>{
     const panierId = req.params.id
     const panier = await Panier.findById(panierId)
 
+    // const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+    // cette constante permet de recupérer la session stripe avec les information de la session (meta donné status du paiement etc utilie simple pratique)
+    
     try {
         if(panier && panier.payer){
             res.render('confirmPayement', {user, panier})
