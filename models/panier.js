@@ -14,9 +14,6 @@ const panierSchema = new mongoose.Schema({
     price: {
         type: Number,
     },
-    payementIntentId: {
-        type: String
-    },
     payer: {
         type: Boolean,
         default: false

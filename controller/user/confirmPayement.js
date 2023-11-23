@@ -5,12 +5,13 @@ exports.getConfirmPayement =  async (req, res, next)=>{
     const user = req.session.user
     const panierId = req.params.id
     const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
-    console.log(session)
     const panier = await Panier.findById(panierId)
 
     try {
-        if(panier){
-            if('session payéééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé !', session.status)
+        if(panier && session.payment_status){
+            panier.payer = true;
+            await panier.save()
+            console.log('panier save : ', panier.payer)
             res.render('confirmPayement', {user, panier})
         }else{
             res.render('confirmPayement', {user, panier, err: 'panier non payer une erreur est survenue !'})
