@@ -28,7 +28,7 @@ const csp = {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "https://js.stripe.com/v3/"],
         frameSrc: ["'self'", "https://js.stripe.com"],
-        formAction: ["'self'", "https://digisound.onrender.com", "http://127.0.0.1/panier/:id"],
+        formAction: ["'self'"],
     },
 };
 
