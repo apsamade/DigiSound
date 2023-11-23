@@ -44,7 +44,6 @@ exports.postPayement = async (req, res, next) => {
                 panierId: panier._id,
                 panierPrice: panier.price,
                 productId: panier.produitId,
-                panier: panier
             },
         });
 
