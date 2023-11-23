@@ -10,7 +10,7 @@ exports.getConfirmPayement =  async (req, res, next)=>{
 
     try {
         if(panier){
-            if('session payé !', session.status)
+            if('session payéééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé !', session.status)
             res.render('confirmPayement', {user, panier})
         }else{
             res.render('confirmPayement', {user, panier, err: 'panier non payer une erreur est survenue !'})
