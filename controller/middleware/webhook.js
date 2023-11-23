@@ -34,14 +34,9 @@ exports.handleWebhook = async (req, res, next) => {
         case 'checkout.session.completed': {
             const session = event.data.object;
             createOrder(session);
-
-            // Check if the order is paid (for example, from a card payment)
-            //
-            // A delayed notification payment will have an `unpaid` status, as
-            // you're still waiting for funds to be transferred from the customer's
-            // account.
             if (session.payment_status === 'paid') {
                 fulfillOrder(session);
+                console.log(req.query.session_id)
             }
 
             break;
@@ -58,8 +53,6 @@ exports.handleWebhook = async (req, res, next) => {
 
         case 'checkout.session.async_payment_failed': {
             const session = event.data.object;
-
-            // Send an email to the customer asking them to retry their order
             emailCustomerAboutFailedPayment(session);
 
             break;
