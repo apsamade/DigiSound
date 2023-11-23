@@ -36,7 +36,6 @@ exports.handleWebhook = async (req, res, next) => {
             createOrder(session);
             if (session.payment_status === 'paid') {
                 fulfillOrder(session);
-                console.log(req.query.session_id)
             }
 
             break;
