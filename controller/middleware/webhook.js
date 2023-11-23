@@ -43,7 +43,7 @@ exports.handleWebhook = async (req, res, next) => {
             const session = event.data.object;
             createOrder(session);
             if (session.payment_status === 'paid') {
-                fulfillOrder(session);
+                await fulfillOrder(session);
             }
 
             break;
@@ -53,7 +53,7 @@ exports.handleWebhook = async (req, res, next) => {
             const session = event.data.object;
 
             // Fulfill the purchase...
-            fulfillOrder(session);
+            await fulfillOrder(session);
 
             break;
         }
