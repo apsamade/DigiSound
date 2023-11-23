@@ -21,9 +21,6 @@ exports.handleWebhook = async (req, res, next) => {
         case 'payment_intent.succeeded':
             const paymentIntentSucceeded = event.data.object;
             console.log('paiement effectuer avec succès', paymentIntentSucceeded.status)
-            const panier = await Panier.findOne({payementIntentId: paymentIntentSucceeded.id})
-            panier.payer = true;
-            await panier.save()
             break;
         // ... handle other event types
         default:

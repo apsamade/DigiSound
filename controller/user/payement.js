@@ -29,6 +29,7 @@ exports.postPayement = async (req, res, next) => {
     console.log('fiche prix', price)
     try {
         const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
             line_items: [
                 {
                     price: price.id,
