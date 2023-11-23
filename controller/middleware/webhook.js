@@ -13,7 +13,7 @@ const fulfillOrder = async (lineItems) => {
         await panier.save()
         console.log('panier payer : ', panier.payer)
     } catch (error) {
-        
+        console.log(error)
     }
     console.log("Fulfilling order", lineItems);
 }
