@@ -41,7 +41,7 @@ exports.postPayement = async (req, res, next) => {
             metadata: {
                 userId: user._id,
                 userName: user.pseudo,
-                panierId: panier._id,
+                panierId: panierId,
                 panierPrice: panier.price,
                 productId: panier.produitId,
             },
