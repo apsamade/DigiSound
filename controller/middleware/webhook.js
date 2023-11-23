@@ -5,9 +5,9 @@ const Panier = require('../../models/panier')
 const Product = require('../../models/product')
 const User = require('../../models/user')
 
-const fulfillOrder = async (lineItems) => {
+const fulfillOrder = async (lineItems, panierId) => {
     try {
-        const panier = await Panier.findById(req.params.id)
+        const panier = await Panier.findById(panierId)
         panier.payer = true;
         await panier.save()
         console.log('panier payer : ', panier.payer)
@@ -42,7 +42,7 @@ exports.handleWebhook = async (req, res, next) => {
             const session = event.data.object;
             createOrder(session);
             if (session.payment_status === 'paid') {
-                await fulfillOrder(session);
+                await fulfillOrder(session, req.params.id);
             }
 
             break;
@@ -52,7 +52,7 @@ exports.handleWebhook = async (req, res, next) => {
             const session = event.data.object;
 
             // Fulfill the purchase...
-            await fulfillOrder(session);
+            await fulfillOrder(session, req.params.id);
 
             break;
         }
