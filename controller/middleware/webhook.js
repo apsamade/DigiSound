@@ -43,6 +43,8 @@ exports.handleWebhook = async (req, res, next) => {
             if (session.payment_status === 'paid') {
                 fulfillOrder(session);
                 const panier = await Panier.findById(req.params.id)
+                console.log('panier : ', panier)
+                console.log('panierID : ', req.params.id)
                 panier.payer = true;
                 await panier.save()
                 console.log('save : ', panier.payer)
