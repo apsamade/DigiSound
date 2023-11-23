@@ -28,8 +28,7 @@ const csp = {
             defaultSrc: ["'self'"],
             scriptSrc: ["'self'", "https://js.stripe.com/v3/"],
             frameSrc: ["'self'", "https://js.stripe.com"],
-            formAction: ["'self'", "https://digisound.onrender.com/panier/:id"],
-        },
+            formAction: ["'self'", "https://digisound.onrender.com", "https://digisound.onrender.com/panier"],        },
 };
 
 app.use(cors());
