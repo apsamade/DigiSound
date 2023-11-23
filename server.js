@@ -25,10 +25,11 @@ app.set('view engine', 'ejs')
 
 const csp = {
     directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "https://js.stripe.com/v3/"],
-            frameSrc: ["'self'", "https://js.stripe.com"],
-            formAction: ["'self'", "https://digisound.onrender.com", "https://digisound.onrender.com/panier"],        },
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "https://js.stripe.com/v3/"],
+        frameSrc: ["'self'", "https://js.stripe.com"],
+        formAction: ["'self'", "https://digisound.onrender.com"],
+    },
 };
 
 app.use(cors());
