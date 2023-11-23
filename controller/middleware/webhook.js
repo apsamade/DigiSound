@@ -5,10 +5,10 @@ const Panier = require('../../models/panier')
 const Product = require('../../models/product')
 const User = require('../../models/user')
 
-const fulfillOrder = async (lineItems, panierId) => {
+const fulfillOrder = async (lineItems) => {
     try {
-        console.log('meta donné : ', lineItems.metadata)
-        const panier = await Product.findById(metadata.panierId)
+        console.log('meta donné ? : ', lineItems.metadata)
+        const panier = await Panier.findById(metadata.panierId)
         console.log('webhook panier : ', panier)
     } catch (error) {
         console.log(error)
