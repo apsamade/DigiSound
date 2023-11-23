@@ -9,7 +9,9 @@ const fulfillOrder = async (lineItems) => {
     try {
         console.log('meta donné ? : ', lineItems.metadata)
         const panier = await Panier.findById(lineItems.metadata.panierId)
-        console.log('webhook panier : ', panier)
+        panier.payer = true;
+        await panier.save()
+        console.log('webhook panier payer ? : ', panier.payer)
     } catch (error) {
         console.log(error)
     }
