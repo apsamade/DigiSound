@@ -6,15 +6,15 @@ h1 {
 
 
 /* formulaire de payement */
-form {
+#checkout{
     margin: 0 auto 15px;
-    width: 30vw;
+    width: 33vw;
     min-width: 500px;
     align-self: center;
-    background-color: #333333;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
     border-radius: 0 0 7px 7px;
     padding: 40px;
+    background-color: white;
 }
 .description{
     margin: 15px auto 0;

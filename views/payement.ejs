@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/public/css/payement.css">
     <link rel="shortcut icon" href="/public/img/logo/logoSimple.png" type="image/x-icon">
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="/public/js/checkout.js" defer></script>
 </head>
 <body>
     <% if(user && user.admin){ %>
@@ -18,12 +19,8 @@
         <%- include('partials/nav.ejs') %>
     <% } %>
         <h1>Payement</h1>
-        <div class="description">
-            <h3>Stubborn Attachments</h3>
-            <h5>$20.00</h5>
+        <div id="checkout">
+            <!-- Checkout will insert the payment form here -->
         </div>
-        <form method="POST">
-            <button type="submit" id="checkout-button">Checkout</button>
-        </form>
 </body>
 </html>

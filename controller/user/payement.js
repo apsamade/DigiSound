@@ -25,10 +25,9 @@ exports.postPayement = async (req, res, next) => {
         unit_amount: amount,
         currency: 'eur',
     })
-    console.log('fiche produit', product)
-    console.log('fiche prix', price)
     try {
         const session = await stripe.checkout.sessions.create({
+            ui_mode: 'embedded',
             payment_method_types: ['card'],
             line_items: [
                 {
@@ -37,12 +36,20 @@ exports.postPayement = async (req, res, next) => {
                 },
             ],
             mode: 'payment',
-            success_url: `${YOUR_DOMAIN}/panier/${panierId}/confirmation-du-payement?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${YOUR_DOMAIN}/panier/${panierId}/annulation-du-payement`,
+            return_url: `${YOUR_DOMAIN}/panier/${panierId}/confirmation-du-payement?session_id={CHECKOUT_SESSION_ID}`,
         });
 
-        res.redirect(303, session.url);
+        res.send({ clientSecret: session.client_secret });
     } catch (error) {
         console.log(error)
     }
+}
+
+exports.getStatusSession =  async (req, res) => {
+    const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+
+    res.send({
+        status: session.status,
+        customer_email: session.customer_details.email
+    });
 }
