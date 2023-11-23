@@ -6,7 +6,6 @@ const Product = require('../../models/product')
 const User = require('../../models/user')
 
 const fulfillOrder = async (lineItems) => {
-    lineItems = session.display_items;
     try {
         const panier = await Panier.findById(req.params.id)
         panier.payer = true;
