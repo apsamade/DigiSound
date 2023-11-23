@@ -31,8 +31,6 @@ router.post('/shop', shopController.postShop)
 
 router.get('/panier/:id', payementController.getPayement)
 router.post('/panier/:id', payementController.postPayement)
-router.get('/panier/:id/session-status', payementController.getStatusSession)
-
 
 router.get('/panier/:id/confirmation-du-payement', confirmPayementController.getConfirmPayement)
 router.post('/panier/:id/confirmation-du-payement', confirmPayementController.postConfirmPayement)

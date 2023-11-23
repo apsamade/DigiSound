@@ -7,7 +7,7 @@ const User = require('../../models/user')
 
 const fulfillOrder = async (lineItems, panierId) => {
     try {
-
+        
     } catch (error) {
         console.log(error)
     }
