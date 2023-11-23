@@ -5,8 +5,16 @@ const Panier = require('../../models/panier')
 const Product = require('../../models/product')
 const User = require('../../models/user')
 
-const fulfillOrder = (lineItems) => {
-    // TODO: fill me in
+const fulfillOrder = async (lineItems) => {
+    const lineItems = session.display_items;
+    try {
+        const panier = await Panier.findById(req.params.id)
+        panier.payer = true;
+        await panier.save()
+        console.log('panier payer : ', panier.payer)
+    } catch (error) {
+        
+    }
     console.log("Fulfilling order", lineItems);
 }
 const createOrder = (session) => {
