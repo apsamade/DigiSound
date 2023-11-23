@@ -43,7 +43,8 @@ exports.postPayement = async (req, res, next) => {
                 userName: user.pseudo,
                 panierId: panier._id,
                 panierPrice: panier.price,
-                productId: panier.produitId
+                productId: panier.produitId,
+                panier: panier
             },
         });
 
