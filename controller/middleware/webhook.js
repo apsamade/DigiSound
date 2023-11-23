@@ -5,27 +5,39 @@ const Panier = require('../../models/panier')
 const Product = require('../../models/product')
 const User = require('../../models/user')
 
+const fulfillOrder = (lineItems) => {
+    // TODO: fill me in
+    console.log("Fulfilling order", lineItems);
+}
 
 exports.handleWebhook = async (req, res, next) => {
-    const sig = req.headers['stripe-signature'];
+    const payload = request.body;
+    const sig = request.headers['stripe-signature'];
+
     let event;
 
     try {
-        event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+        event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
     } catch (err) {
-        res.status(400).send(`Webhook Error: ${err.message}`);
-        return;
+        return response.status(400).send(`Webhook Error: ${err.message}`);
     }
-    // Handle the event
-    switch (event.type) {
-        case 'payment_intent.succeeded':
-            const paymentIntentSucceeded = event.data.object;
-            console.log('paiement effectuer avec succès', paymentIntentSucceeded.status)
-            break;
-        // ... handle other event types
-        default:
-            console.log(`Unhandled event type ${event.type}`);
+
+    // Handle the checkout.session.completed event
+    if (event.type === 'checkout.session.completed') {
+        // Retrieve the session. If you require line items in the response, you may include them by expanding line_items.
+        const sessionWithLineItems = await stripe.checkout.sessions.retrieve(
+            event.data.object.id,
+            {
+                expand: ['line_items'],
+            }
+        );
+        const lineItems = sessionWithLineItems.line_items;
+
+        // Fulfill the purchase...
+        fulfillOrder(lineItems);
     }
+
+    response.status(200).end();
     // Return a 200 response to acknowledge receipt of the event
     res.status(200).send();
 
