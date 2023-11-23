@@ -54,8 +54,8 @@ h1 {
 
 form {
     margin: 15px auto;
-    width: 30vw;
-    min-width: 500px;
+    width: 30%;
+    min-width: 300px;
     align-self: center;
     background-color: #333333;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);

@@ -10,3 +10,34 @@ h2{
     margin: 15px auto;
     font-family: 'Lexend', sans-serif;
 }
+.facture{
+    width: 50%;
+    min-width: 300px;
+    max-width: 1000px;
+    margin: 15px auto;
+    font-family: 'lexend', sans-serif;
+    padding: 40px;
+    border-radius: 6px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
+    background-color: white;
+}
+.facture ul li{
+    list-style: inside;
+}
+.back{
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
+    background-color: black;
+    color: white;
+    display: block;
+    text-decoration: none;
+    margin: 35px auto 15px;
+    text-align: center;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+.back:hover{
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.6);
+    background-color: green;
+}

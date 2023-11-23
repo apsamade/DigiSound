@@ -23,13 +23,13 @@
         <% if (typeof err !== 'undefined') { %>
             <div id="error-message" style="text-align: center;"><%= err %></div>  
         <% } %>   
-        <div>
+        <div class="facture">
             <h2>élement de l'objet</h2>
-
             <ul>
                 <li><strong>Prix:</strong> <%= panier.price/100 %> € </li>
                 <li><strong>Payer:</strong> <%= panier.payer %> </li>
             </ul>
+            <a class="back" href="/">Back Home</a>
         </div>
     </section>
 
