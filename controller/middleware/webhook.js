@@ -8,7 +8,7 @@ const User = require('../../models/user')
 const fulfillOrder = async (lineItems) => {
     try {
         console.log('meta donné ? : ', lineItems.metadata)
-        const panier = await Panier.findById(metadata.panierId)
+        const panier = await Panier.findById(lineItems.metadata.panierId)
         console.log('webhook panier : ', panier)
     } catch (error) {
         console.log(error)
