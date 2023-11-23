@@ -33,7 +33,6 @@ exports.handleWebhook = async (req, res, next) => {
     switch (event.type) {
         case 'checkout.session.completed': {
             const session = event.data.object;
-            // Save an order in your database, marked as 'awaiting payment'
             createOrder(session);
 
             // Check if the order is paid (for example, from a card payment)
@@ -43,6 +42,10 @@ exports.handleWebhook = async (req, res, next) => {
             // account.
             if (session.payment_status === 'paid') {
                 fulfillOrder(session);
+                const panier = await Panier.findById(req.params.id)
+                panier.payer = true;
+                await panier.save()
+                console.log('save : ', panier.payer)
             }
 
             break;
