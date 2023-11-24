@@ -2,8 +2,6 @@ const stripe = require('stripe')(process.env.SECRET_KEY_STRIPE);
 const endpointSecret = process.env.SECRET_WEBHOOK_KEY_STRIPE;
 
 const Panier = require('../../models/panier')
-const Product = require('../../models/product')
-const User = require('../../models/user')
 
 const fulfillOrder = async (lineItems) => {
     try {
