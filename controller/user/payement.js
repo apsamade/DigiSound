@@ -45,6 +45,14 @@ exports.postPayement = async (req, res, next) => {
                 panierPrice: panier.price,
                 productId: panier.produitId,
             },
+            consent_collection: {
+                terms_of_service: 'required',
+            },
+            custom_text: {
+                terms_of_service_acceptance: {
+                    message: 'I agree to the [Terms of Service](https://example.com/terms)',
+                }
+            }
         });
 
         res.send({ clientSecret: session.client_secret });
